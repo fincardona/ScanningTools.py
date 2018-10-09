@@ -5,10 +5,10 @@ STRIP Scanning Strategy Tools test module.
 import unittest
 import healpy as hp
 import numpy as np
-import ScanningTools as st
+from ScanningTools import ScanningTools as st
 from astropy.time import Time
 from astropy.coordinates import SkyCoord, AltAz 
-from Quaternions import Quaternion as q
+from ScanningTools.Quaternions import Quaternion as q
 
 
 angles = np.array([[-10, 45, 59],
@@ -133,7 +133,8 @@ class TestScanningTools(unittest.TestCase):
             self.assertTrue(np.allclose(x_fp[i, 1], -x_fp[j, 1]))
             self.assertTrue(np.allclose(x_fp[i, 2], x_fp[j, 2]))
             
-        x_fp, n_horns = st.get_full_fp('fp_theta.txt', 'fp_phi.txt')
+        x_fp, n_horns = st.get_full_fp('./ScanningTools/fp_data/fp_theta.txt',
+                                       './ScanningTools/fp_data/fp_phi.txt')
         self.assertTrue(np.allclose(np.sum(x_fp**2, axis=1), 1))
         self.assertEqual(n_horns, 49)
         general_test(x_fp, 7, 42)
@@ -166,7 +167,8 @@ class TestScanningTools(unittest.TestCase):
             self.assertTrue(np.allclose(x_fp[i, 1], -x_fp[j, 1]))
             self.assertTrue(np.allclose(x_fp[i, 2], x_fp[j, 2]))
             
-        full_psi, polarization_versor = st.get_full_fp_polarization_angles('fp_psi.txt')
+        full_psi, polarization_versor = st.get_full_fp_polarization_angles(
+            './ScanningTools/fp_data/fp_psi.txt')
         self.assertTrue(np.allclose(np.sum(polarization_versor**2, axis=1), 1))
         self.assertEqual(len(full_psi), 49)
         self.assertEqual(len(polarization_versor), 49)        
@@ -381,7 +383,8 @@ class TestScanningTools(unittest.TestCase):
             self.assertTrue(np.degrees(fp_pointings[..., 1]).max() <= 365)
             self.assertTrue(np.allclose(np.sum(fp_pointings_c**2, axis=-1), 1))
 
-        x_fp, n_horns = st.get_full_fp('fp_theta.txt', 'fp_phi.txt')
+        x_fp, n_horns = st.get_full_fp('./ScanningTools/fp_data/fp_theta.txt',
+                                       './ScanningTools/fp_data/fp_phi.txt')
         obs_time1, obs_time2 = ((0, 0, 0, 30, 0), (0, 90, 0, 0, 0))
         rpm1, rpm2 = (7, 2)
         day1, day2 = (None, 10)
@@ -429,7 +432,8 @@ class TestScanningTools(unittest.TestCase):
             self.assertTrue(np.degrees(Az.max()) <= 360)
             self.assertTrue(np.degrees(Az.min()) >= 0)
 
-        x_fp, n_horns = st.get_full_fp('fp_theta.txt', 'fp_phi.txt')
+        x_fp, n_horns = st.get_full_fp('./ScanningTools/fp_data/fp_theta.txt',
+                                       './ScanningTools/fp_data/fp_phi.txt')
         obs_time = (0, 2, 0, 0, 0)
         sampling_rate = 1
         rpm = 4
@@ -448,7 +452,8 @@ class TestScanningTools(unittest.TestCase):
 
     def test_get_icrs_coordinates(self):
         
-        x_fp, n_horns = st.get_full_fp('fp_theta.txt', 'fp_phi.txt')
+        x_fp, n_horns = st.get_full_fp('./ScanningTools/fp_data/fp_theta.txt',
+                                       './ScanningTools/fp_data/fp_phi.txt')
         obs_time = (0, 2, 0, 0, 0)
         sampling_rate = 1
         rpm = 3
@@ -509,7 +514,7 @@ class TestScanningTools(unittest.TestCase):
             diff_Ra[diff_Ra > 6] = 2 * np.pi - diff_Ra[diff_Ra > 6]
             self.assertTrue((diff_Ra <= accuracy).all())
             
-        x_fp, n_horns = st.get_full_fp('fp_theta.txt', 'fp_phi.txt')
+        x_fp, n_horns = st.get_full_fp('./ScanningTools/fp_data/fp_theta.txt', './ScanningTools/fp_data/fp_phi.txt')
         obs_time = (0, 2, 0, 0, 0)
         sampling_rate = 1
         rpm = 3
@@ -556,7 +561,8 @@ class TestScanningTools(unittest.TestCase):
         theta, phi, psi = st.get_engine_rotations(time, rpm, zenith_distance, boresight_angle)
         theta1, phi1, psi1 = st.get_engine_rotations(time1, rpm1, zenith_distance1, boresight_angle)
         theta2, phi2, psi2 = st.get_engine_rotations(time1, rpm1, zenith_distance, boresight_angle)
-        x_fp_pol_angles, x_fp_pol_versors = st.get_full_fp_polarization_angles('fp_psi.txt')
+        x_fp_pol_angles, x_fp_pol_versors = st.get_full_fp_polarization_angles(
+            './ScanningTools/fp_data/fp_psi.txt')
         n_horns = len(x_fp_pol_versors)
         fp_pol_pointings = st.get_fp_rotations(phi, theta, psi, x_fp_pol_versors, n_horns, time,
                                                n=n, cartesian=True) #rad
@@ -610,14 +616,16 @@ class TestScanningTools(unittest.TestCase):
         packed_values1 = st.get_scanning_strategy(
             obs_time, sampling_rate, zenith_distance, polarization_angle, rpm, n=n1, day=day2,
             LCT_start=(0, 0, 0), LCD_start=(1, 1, 2018), UTC=0, DST=0, LAT=np.array([28, 16, 24]),
-            LONG=np.array([-16, 38, 32]), Height=2400, fp_theta_path='fp_theta.txt',
-            fp_phi_path='fp_phi.txt')
+            LONG=np.array([-16, 38, 32]), Height=2400,
+            fp_theta_path='./ScanningTools/fp_data/fp_theta.txt',
+            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt')
 
         packed_values2 = st.get_scanning_strategy(
             obs_time, sampling_rate, zenith_distance, polarization_angle, rpm, n=n2, day=day1,
             LCT_start=(0, 0, 0), LCD_start=(1, 1, 2018), UTC=0, DST=0, LAT=np.array([28, 16, 24]),
-            LONG=np.array([-16, 38, 32]), Height=2400, fp_theta_path='fp_theta.txt',
-            fp_phi_path='fp_phi.txt')
+            LONG=np.array([-16, 38, 32]), Height=2400,
+            fp_theta_path='./ScanningTools/fp_data/fp_theta.txt',
+            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt')
 
         general_tests(packed_values1)
         general_tests(packed_values2)

@@ -528,8 +528,8 @@ def get_practical_icrs_coordinates(JD, loc, Alt, Az, hours=False):
     """
     tc, tw = (timing.clock(), timing.time())
     LST = Time(JD, format='jd', location=loc).sidereal_time('mean').value
-    Lat = loc.latitude.rad
-    Long = loc.longitude.rad
+    Lat = loc.lat.rad
+    Long = loc.lon.rad
     Dec = np.arcsin(np.sin(Alt) * np.sin(Lat) + np.cos(Alt) * np.cos(Lat) * np.cos(Az))
     HourAngle = np.arccos((np.sin(Alt) - np.sin(Dec) * np.sin(Lat)) / (np.cos(Dec) * np.cos(Lat)))
     index = np.sin(Az) < 0

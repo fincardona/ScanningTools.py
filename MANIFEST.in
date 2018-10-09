@@ -1,0 +1,3 @@
+include ScanningTools/fp_data/fp_theta.txt
+include ScanningTools/fp_data/fp_phi.txt
+include ScanningTools/fp_data/fp_psi.txt

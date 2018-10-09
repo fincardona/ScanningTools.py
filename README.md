@@ -4,6 +4,6 @@ A series of astronomical utilities developed to study scanning strategies of gro
 
 To install it use the command:
 
-`sudo pip install git+git://github.com/yourName/repoName.git#egg=repoName`
+`sudo pip install git+git:https://github.com/fincardona/ScanningTools.py.git#egg=ScanningTools`
 
 Enjoy!

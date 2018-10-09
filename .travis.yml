@@ -4,7 +4,7 @@ python:
   
 install:
   - pip install healpy matplotlib
-  - python setup.py dist
+  - python setup.py sdist
   - python setup.py install
   
 # command to run tests

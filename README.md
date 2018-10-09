@@ -14,8 +14,12 @@ This software has been developed in the context of the LSPE/STRIP telescope that
 and a lot of others tools exploiting `astropy` to perform coordinates conversion.
   
   
-To install it use the command:
+To install, clone the repository in your local folder with:
 
-`sudo pip install git+git:https://github.com/fincardona/ScanningTools.py.git#egg=ScanningTools`
+`git clone https://github.com/fincardona/ScanningTools.py.git`
+
+then go inside the folder and run:
+
+`python setup.py install`
 
 Enjoy!

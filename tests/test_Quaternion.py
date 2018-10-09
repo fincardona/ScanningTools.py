@@ -4,7 +4,7 @@ import unittest
 import numpy as np
 import matplotlib.pyplot as mp
 
-from Quaternion import Quaternion
+from ScanningTools import ScanningTools, Quaternion
 
 def rot_matrix(theta, u=np.array([0, 0, 1])):
     cos = np.cos(theta)

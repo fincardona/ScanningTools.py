@@ -8,7 +8,7 @@ import numpy as np
 import ScanningTools as st
 from astropy.time import Time
 from astropy.coordinates import SkyCoord, AltAz 
-from Quaternion import Quaternion as q
+from Quaternions import Quaternion as q
 
 
 angles = np.array([[-10, 45, 59],

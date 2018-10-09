@@ -1,5 +1,7 @@
 # ScanningTools
 
+[![Build Status](https://travis-ci.org/lspestrip/Stripeline.jl.svg?branch=master)](https://travis-ci.org/lspestrip/Stripeline.jl)
+
 A series of astronomical utilities developed to study scanning strategies of ground-based instruments. 
 
 This software has been developed in the context of the LSPE/STRIP telescope that will be installed at Mount Teide, Tenerife. It provides functions to convert:

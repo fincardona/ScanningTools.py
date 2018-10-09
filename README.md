@@ -1,6 +1,6 @@
 # ScanningTools
 
-[![Build Status](https://travis-ci.org/lspestrip/Stripeline.jl.svg?branch=master)](https://travis-ci.org/lspestrip/Stripeline.jl)
+[![Build Status](https://travis-ci.com/fincardona/ScanningTools.py.svg?branch=master)](https://travis-ci.com/fincardona/ScanningTools.py)
 
 A series of astronomical utilities developed to study scanning strategies of ground-based instruments. 
 

@@ -1,7 +1,9 @@
 language: python
 python:
   - "3.6.5"
-
+  
+install:
+  - pip install healpy matplotlib
 # command to run tests
 script:
   - pytest

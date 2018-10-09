@@ -11,7 +11,7 @@ This software has been developed in the context of the LSPE/STRIP telescope that
   - Local Civil Time (LCT) to the GCD
   - LCT to JD
 
-and a lot of others tools exploiting `astropy` to perform coordinates conversion. A module named `Quaternions` allows to perform all the operations with quaternions.
+and a lot of others tools exploiting `astropy` to perform coordinates conversion. A module named `Quaternions` allows to perform all the operations with the quaternions.
   
   
 To install, clone the repository in your local folder with:

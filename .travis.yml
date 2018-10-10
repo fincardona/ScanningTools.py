@@ -3,13 +3,11 @@ python:
   - "3.6.5"
   
 install:
-  - travis_wait 200 mvn -e -X install
+  #- travis_wait 200 mvn -e -X install
   - pip install healpy matplotlib
   - python setup.py sdist
   - python setup.py install
   
-  
-# command to run tests
 script:
   - pytest
   

@@ -6,7 +6,7 @@ install:
   - pip install healpy matplotlib
   - python setup.py sdist
   - python setup.py install
-  - cd /home/travis/build/fincardona/ScanningTools.py/ScanningTools
+  - cd /home/travis/build/fincardona/
   - travis_wait 200 mvn -e -X install
   
 # command to run tests

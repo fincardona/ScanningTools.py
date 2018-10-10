@@ -6,7 +6,7 @@ install:
   - pip install healpy matplotlib
   - python setup.py sdist
   - python setup.py install
-  - travis_wait mvn install
+  - travis_wait mvn -e install
   #- travis_wait 200 mvn install
   
 # command to run tests

@@ -12,9 +12,9 @@ This software has been developed in the context of the LSPE/STRIP telescope that
   - Greenwich Calendar Date (GCD) to Julian Date (JD)
   - Local Civil Time (LCT) to the GCD
   - LCT to JD
+  - Horizontal coordinates (Alt, Az) to ICRS coordinates (Dec, Ra) 
 
-and a lot of others tools exploiting `astropy` to perform coordinates conversion. A module named `Quaternions` allows to perform all the operations with the quaternions.
-  
+and a lot of others tools to perform coordinates conversion in a fast and vey accurte way. A module named `Quaternions` allows to perform all the operations with the quaternions.
   
 To install, clone the repository in your local folder with:
 

@@ -618,14 +618,16 @@ class TestScanningTools(unittest.TestCase):
             LCT_start=(0, 0, 0), LCD_start=(1, 1, 2018), UTC=0, DST=0, LAT=np.array([28, 16, 24]),
             LONG=np.array([-16, 38, 32]), Height=2400,
             fp_theta_path='./ScanningTools/fp_data/fp_theta.txt',
-            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt')
+            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt',
+            fp_psi_path='./ScanningTools/fp_data/fp_psi.txt')
 
         packed_values2 = st.get_scanning_strategy(
             obs_time, sampling_rate, zenith_distance, polarization_angle, rpm, n=n2, day=day1,
             LCT_start=(0, 0, 0), LCD_start=(1, 1, 2018), UTC=0, DST=0, LAT=np.array([28, 16, 24]),
             LONG=np.array([-16, 38, 32]), Height=2400,
             fp_theta_path='./ScanningTools/fp_data/fp_theta.txt',
-            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt')
+            fp_phi_path='./ScanningTools/fp_data/fp_phi.txt',
+            fp_psi_path='./ScanningTools/fp_data/fp_psi.txt')
 
         general_tests(packed_values1)
         general_tests(packed_values2)

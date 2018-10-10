@@ -352,7 +352,7 @@ def get_location(LAT, LONG, Height):
     """
     Lat = sex2dec(LAT) #deg
     Long = sex2dec(LONG) #deg
-    return EarthLocation(lat=Lat*u.deg, lon=Long*u.deg, height=Height*u.meter)
+    return EarthLocation(lon=Long, lat=Lat, height=Height)
 
 
 def spin_generator(time, rpm):
@@ -612,8 +612,8 @@ def get_polarization_angles(phi, theta, psi, x_fp_pol_versors, n_horns, time, n=
 def get_scanning_strategy(obs_time, sampling_rate, zenith_distance, boresight_angle, rpm, n=None,
                           day=None, LCT_start=(0, 0, 0), LCD_start=(1, 1, 2018), UTC=0, DST=0,
                           LAT=np.array([28, 16, 24]), LONG=np.array([-16, 38, 32]), Height=2400,
-                          fp_theta_path='fp_theta.txt', fp_phi_path='fp_phi.txt',
-                          fp_psi_path='fp_psi.txt'):
+                          fp_theta_path='./fp_theta.txt', fp_phi_path='./fp_phi.txt',
+                          fp_psi_path='./fp_psi.txt'):
     """
     It returns all the parameters of the STRIP Scanning Strategy, in the following order:
     

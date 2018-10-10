@@ -6,8 +6,8 @@ install:
   - pip install healpy matplotlib
   - python setup.py sdist
   - python setup.py install
-  - travis_wait mvn -e install
-  #- travis_wait 200 mvn install
+  - cd ScanningTools.py
+  - travis_wait 200 mvn -e install
   
 # command to run tests
 script:

@@ -186,7 +186,7 @@ def LocalCivilTime2GreenwichCalendarDay(LCT, LCD, UTC=0, DST=0):
     """
     (h, m, s), (D, M, Y)  = LCT, LCD
     UniversalTime = (h - DST - UTC) + m / 60 + s / 3600 
-    return UniversalTime / 24 + D, M , Y
+    return UniversalTime / 24 + D, M, Y
 
 
 def LocalCivilTime2JulianDay(LCT, LCD, UTC=0, DST=0):
@@ -211,6 +211,40 @@ def LocalCivilTime2JulianDay(LCT, LCD, UTC=0, DST=0):
     """
     GreenwichCalendarDay, M, Y = LocalCivilTime2GreenwichCalendarDay(LCT, LCD, UTC=UTC, DST=DST)
     return GreenwichCalendarDate2JulianDate(GreenwichCalendarDay, M, Y)
+
+
+def LocalCivilTime2LocalSiderealTime(LCT, LCD, LONG, UTC=0, DST=0):
+    """
+    It converts the Local Civil Time (LCT) to the Local Sidereal Time.
+
+    Parameters
+    ----------
+    LCT : tuple of length 3
+          It is the Local Civil Time in the format (hours, minutes, seconds). 
+    LCD : tuple of length 3
+          It is the Local Civil Day in the format (day, month, year). 
+    LONG   : tuple of length 3
+             It is the observation site Longitude in the format (deg, min, sec). 
+    UTC : integer in the range (-12, 12)
+          It is the number which describes the Earth time zone with respect to 
+          the Greenwich time zone (UTC=0).
+    DST : integer in the range (0, 1)
+          It is the number which says if the Daylight Saving Time is on or off.
+
+    Returns
+    -------
+    out : float
+    """
+    jd = LocalCivilTime2JulianDay(LCT, LCD, UTC=0, DST=0)
+    d = jd - 2451543.5
+    w = 282.9404 + 4.70935e-5 * d
+    M = 356.0470 + 0.9856002585 * d
+    L = w + np.mod(M, 360)
+    GMST0 = np.mod(L, 360)/15 + 12
+    rest = jd - np.floor(jd) + 0.5
+    UT = (rest - np.floor(rest)) * 24
+    LST = np.mod(GMST0, 24) + UT + sex2dec(LONG)/15
+    return dec2sex(np.mod(LST, 24))
 
 
 def get_nside_eff(fwhm_beam):

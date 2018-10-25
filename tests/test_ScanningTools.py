@@ -115,6 +115,15 @@ class TestScanningTools(unittest.TestCase):
                       st.LocalCivilTime2JulianDay((19, 30, 2), (22, 4, 1980), UTC=0, DST=0)])
         self.assertTrue(np.allclose(t, T))
 
+
+    def test_LocalCivilTime2LocalSiderealTime(self):
+
+        LONG = st.dec2sex(0.1)  
+        Jun_19_2009 = st.LocalCivilTime2LocalSiderealTime((18, 0, 0),
+                                                          (19, 6, 2009),
+                                                          LONG, UTC=0, DST=0)
+        self.assertTrue(np.allclose(Jun_19_2009, np.array([11, 52, 46.843])))
+
         
     def test_get_nside_eff(self):
         
